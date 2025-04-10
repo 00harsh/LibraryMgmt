@@ -1,3 +1,4 @@
+/*
 package com.libraryManagement.config;
 
 
@@ -22,4 +23,4 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable());  // Disable CSRF for simplicity (not recommended for production)
         return http.build();
     }
-}
+}*/

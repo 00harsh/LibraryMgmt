@@ -1,5 +1,6 @@
 package com.libraryManagement.controller;
 
+import com.libraryManagement.dto.UserDTO;
 import com.libraryManagement.entity.User;
 import com.libraryManagement.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,12 +27,18 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "User registered successfully", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
-        User registeredUser = userService.registerUser(user);
+    public ResponseEntity<User> registerUser(@RequestBody UserDTO user) {
+        User newUser = new User();
+        newUser.setUsername(user.getUsername());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        User registeredUser = userService.registerUser(newUser);
         if (registeredUser != null) {
             return ResponseEntity.ok(registeredUser);
         }
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(newUser);
     }
 
     @PostMapping("/login")
