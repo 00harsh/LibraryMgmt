@@ -1,8 +1,15 @@
 package com.libraryManagement.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+
 public class UserDTO {
 
+    @NotEmpty
+    @Schema(description = "This is username field and can't be empty")
     private String username;
+    @NotEmpty
+    @Schema(description = "This is password field and can't be empty")
     private String password;
     private String email;
     private String firstName;
